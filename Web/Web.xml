@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Web</name>
+    </assembly>
+    <members>
+        <member name="T:Web.Controllers.AuthenticationController">
+            <inheritdoc />
+        </member>
+        <member name="M:Web.Controllers.AuthenticationController.#ctor(Servises.Interfaces.AuthenticationServices.IJwtTokensService,Servises.Interfaces.AuthenticationServices.ISignInService,Servises.Interfaces.AuthenticationServices.IUserService)">
+            <inheritdoc />
+        </member>
+        <member name="M:Web.Controllers.AuthenticationController.IsAuthenticatedAsync">
+            <summary>
+            User is authenticated.
+            </summary>
+            <response code="200">Success.</response>
+        </member>
+        <member name="M:Web.Controllers.AuthenticationController.CurrentAsync">
+            <summary>
+            Get current user.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="404">User is not found.</response>
+        </member>
+        <member name="M:Web.Controllers.AuthenticationController.Cookies(Web.ViewModels.Authorization.SingInViewModel,System.Boolean)">
+            <summary>
+            Login with cookies.
+            </summary>
+            <param name="model"></param>
+            <param name="remember"></param>
+            <response code="200">Success.</response>
+            <response code="400">Invalid password.</response>
+            <response code="404">User with received email or name not found.</response>
+        </member>
+        <member name="M:Web.Controllers.AuthenticationController.CookiesLogout">
+            <summary>
+            Logout.
+            </summary>
+            <response code="200">Success.</response>
+        </member>
+        <member name="M:Web.Controllers.AuthenticationController.GetJwtToken(Web.ViewModels.Authorization.SingInViewModel)">
+            <summary>
+            Get jwt token.
+            </summary>
+            <param name="model"></param>
+            <response code="200">Success.</response>
+            <response code="400">Invalid password.</response>
+            <response code="404">User with received email or name not found.</response>
+        </member>
+        <member name="M:Web.Controllers.AuthenticationController.UpdateJwtToken(Web.ViewModels.Authorization.RefreshTokenViewModel)">
+            <summary>
+            Get new jwt access token by refresh token.
+            </summary>
+            <param name="model">Refresh jwt token.</param>
+            <response code="200">New access token.</response>
+            <response code="400">Failed to get new access jwt token.</response>
+        </member>
+        <member name="T:Web.Controllers.Products.ProductsController">
+            <summary>
+            Products API.
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.SearchAsync(Web.ViewModels.Films.SearchProductFilterViewModel)">
+            <summary>
+            Search products.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get products. Error list in response body.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.CountAsync(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Get count of products with filter.
+            </summary>
+            <response code="200">Success.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.CountAsync">
+            <summary>
+            Get count of products.
+            </summary>
+            <response code="200">Success.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.GetAsync(Web.ViewModels.GetFilterViewModel)">
+            <summary>
+            Get list of products.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get products. Error list in response body.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.GetAsync(System.Int32)">
+            <summary>
+            Get product by id.
+            </summary>
+            <param name="id">Id of entity.</param>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get product. Error list in response body.</response>
+            <response code="404">The product with the received id was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.PutAsync(Domain.DataBaseModels.Products.Product)">
+            <summary>
+            Chang product.
+            </summary>
+            <param name="putViewModel"></param>
+            <response code="200">The product was changed.</response>
+            <response code="400">Failed to change product. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.PostAsync(Domain.DataBaseModels.Products.Product)">
+            <summary>
+            Create new product.
+            </summary>
+            <param name="postViewModel"></param>
+            <response code="201">The product was created.</response>
+            <response code="400">Failed to create product. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ProductsController.DeleteAsync(System.Int32)">
+            <summary>
+            Delete product.
+            </summary>
+            <param name="id">Id of product to delete.</param>
+            <response code="200">The product was deleted.</response>
+            <response code="400">Failed to delete product. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+            <response code="404">The product with the received id was not found.</response>
+        </member>
+        <member name="T:Web.Controllers.Products.ShopModesController">
+            <summary>
+            Shop modes API.
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopModesController.CountAsync">
+            <summary>
+            Get count of shop mode.
+            </summary>
+            <response code="200">Success.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopModesController.GetAsync(Web.ViewModels.GetFilterViewModel)">
+            <summary>
+            Get list of shop mode.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get shop mode. Error list in response body.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopModesController.GetAsync(System.Int32)">
+            <summary>
+            Get shop mode by id.
+            </summary>
+            <param name="id">Id of entity.</param>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get shop mode. Error list in response body.</response>
+            <response code="404">The shop mode with the received id was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopModesController.PutAsync(Domain.DataBaseModels.Goods.ShopMode)">
+            <summary>
+            Chang shop mode.
+            </summary>
+            <param name="putViewModel"></param>
+            <response code="200">The shop mode was changed.</response>
+            <response code="400">Failed to change shop mode. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopModesController.PostAsync(Domain.DataBaseModels.Goods.ShopMode)">
+            <summary>
+            Create new shop mode.
+            </summary>
+            <param name="postViewModel"></param>
+            <response code="201">The shop mode was created.</response>
+            <response code="400">Failed to create shop mode. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopModesController.DeleteAsync(System.Int32)">
+            <summary>
+            Delete shop mode.
+            </summary>
+            <param name="id">Id of shop mode to delete.</param>
+            <response code="200">The shop mode was deleted.</response>
+            <response code="400">Failed to delete shop mode. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+            <response code="404">The shop mode with the received id was not found.</response>
+        </member>
+        <member name="T:Web.Controllers.Products.ShopsController">
+            <summary>
+            Shops API.
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopsController.CountAsync">
+            <summary>
+            Get count of shop.
+            </summary>
+            <response code="200">Success.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopsController.GetAsync(Web.ViewModels.GetFilterViewModel)">
+            <summary>
+            Get list of shop.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get shop. Error list in response body.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopsController.GetAsync(System.Int32)">
+            <summary>
+            Get shop by id.
+            </summary>
+            <param name="id">Id of entity.</param>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get shop. Error list in response body.</response>
+            <response code="404">The shop with the received id was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopsController.PutAsync(Domain.DataBaseModels.Products.Shop)">
+            <summary>
+            Chang shop.
+            </summary>
+            <param name="putViewModel"></param>
+            <response code="200">The shop was changed.</response>
+            <response code="400">Failed to change shop. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopsController.PostAsync(Domain.DataBaseModels.Products.Shop)">
+            <summary>
+            Create new shop.
+            </summary>
+            <param name="postViewModel"></param>
+            <response code="201">The shop was created.</response>
+            <response code="400">Failed to create shop. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+        </member>
+        <member name="M:Web.Controllers.Products.ShopsController.DeleteAsync(System.Int32)">
+            <summary>
+            Delete shop.
+            </summary>
+            <param name="id">Id of shop to delete.</param>
+            <response code="200">The shop was deleted.</response>
+            <response code="400">Failed to delete shop. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+            <response code="404">The shop with the received id was not found.</response>
+        </member>
+        <member name="T:Web.Controllers.UsersController">
+            <summary>
+            User API.
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.UsersController.#ctor(Servises.Interfaces.AuthenticationServices.IUserService,Servises.Interfaces.IEmailService,Servises.Interfaces.AuthenticationServices.IJwtTokensService)">
+            <inheritdoc />
+        </member>
+        <member name="M:Web.Controllers.UsersController.CountAsync">
+            <summary>
+            Get count of users.
+            </summary>
+            <response code="200">Success.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.GetAsync(Web.ViewModels.GetFilterViewModel)">
+            <summary>
+            Get list of users.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get users. Error list in response body.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.GetAsync(System.String)">
+            <summary>
+            Get user by id.
+            </summary>
+            <param name="id">Id of user.</param>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get user. Error list in response body.</response>
+            <response code="404">The user with the received id was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.GetUserRolesAsync(System.String)">
+            <summary>
+            Get user roles.
+            </summary>
+            <param name="id">Id of user.</param>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get user roles. Error list in response body.</response>
+            <response code="404">The user with the received id was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.PutPasswordAsync(Web.ViewModels.User.UserPasswordPutViewModel)">
+            <summary>
+            Chang password. In case of success, all user refresh tokens will become invalid.
+            </summary>
+            <param name="putPasswordViewModel"></param>
+            <returns></returns>
+            <response code="200">The user password was changed.</response>
+            <response code="400">Failed to change password. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">Access denied. (Attempt to change someone else's account)</response>
+            <response code="404">User is not found.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.PutAsync(Web.ViewModels.User.UserPutViewModel)">
+            <summary>
+            Chang user.
+            </summary>
+            <param name="putViewModel"></param>
+            <response code="200">The user was changed.</response>
+            <response code="400">Failed to change user. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.DeleteAsync(System.String)">
+            <summary>
+            Delete user.
+            </summary>
+            <param name="id">Id of user to delete.</param>
+            <response code="200">The user was deleted.</response>
+            <response code="400">Failed to delete user. Error list in response body.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="403">You are not the administrator.</response>
+            <response code="404">The user with the received id was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.PostAsync(Web.ViewModels.User.UserPostViewModel)">
+            <summary>
+            Create user.
+            </summary>
+            <param name="postViewModel"></param>
+            <response code="201">Success.</response>
+            <response code="400">Failed to create user. Error list in response body.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.ResetPasswordAsync(Web.ViewModels.User.UserPasswordResertViewModel)">
+            <summary>
+            Reset password. In case of success, all user refresh tokens will become invalid.
+            </summary>
+            <param name="passwordResertViewModel"></param>
+            <response code="200">The user password was changed.</response>
+            <response code="400">Failed to update password. Error list in response body.</response>
+            <response code="404">The user with the received email was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.SendResetPasswordCodeAsync(System.String)">
+            <summary>
+            Send reset password url to email addres.
+            </summary>
+            <param name="email">Email.</param>
+            <response code="200">An attempt was made to send the message.</response>
+            <response code="404">The user with the received email was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.ConfirmEmailAsync(System.String,System.String)">
+            <summary>
+            Confirm email.
+            </summary>
+            <param name="userId">User id.</param>
+            <param name="code">Token of email validation.</param>
+            <response code="200">Email was confirmed.</response>
+            <response code="400">Failed to confirm email. Error list in response body.</response>
+            <response code="404">The user with the received id was not found.</response>
+        </member>
+        <member name="M:Web.Controllers.UsersController.SendConfirmEmailCodeAsync">
+            <summary>
+            Send confirm email url to email address of current user.
+            </summary>
+            <response code="200">An attempt was made to send the message.</response>
+            <response code="400">Current user has already verified email.</response>
+            <response code="401">User is not authorized.</response>
+            <response code="404">Current user is not found.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`3.CountAsync">
+            <summary>
+            Get count of entities.
+            </summary>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`3.GetAsync(Web.ViewModels.GetFilterViewModel)">
+            <summary>
+            Get list of entities.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get entities. Error list in response body.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`3.GetAsync(`0)">
+            <summary>
+            Get entitiy by id.
+            </summary>
+            <param name="id">Id of entity.</param>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get entity. Error list in response body.</response>
+            <response code="404">The entity with the received id was not found.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`3.PutAsync(`2)">
+            <summary>
+            Chang entity.
+            </summary>
+            <param name="putViewModel"></param>
+            <response code="200">The entity was changed.</response>
+            <response code="400">Failed to change entity. Error list in response body.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`3.PostAsync(`1)">
+            <summary>
+            Create entity.
+            </summary>
+            <param name="postViewModel"></param>
+            <response code="201">The entity was created.</response>
+            <response code="400">Failed to create entity. Error list in response body.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`3.DeleteAsync(`0)">
+            <summary>
+            Delete entity.
+            </summary>
+            <param name="id">Id of entity to delete.</param>
+            <response code="200">The entity was deleted.</response>
+            <response code="400">Failed to delete entity. Error list in response body.</response>
+            <response code="404">The entity with the received id was not found.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`2.CountAsync">
+            <summary>
+            Get count of entities.
+            </summary>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`2.GetAsync(Web.ViewModels.GetFilterViewModel)">
+            <summary>
+            Get list of entities.
+            </summary>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get entities. Error list in response body.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`2.GetAsync(`0)">
+            <summary>
+            Get entitiy by id.
+            </summary>
+            <param name="id">Id of entity.</param>
+            <response code="200">Success.</response>
+            <response code="400">Failed to get entity. Error list in response body.</response>
+            <response code="404">The entity with the received id was not found.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`2.PutAsync(`1)">
+            <summary>
+            Chang entity.
+            </summary>
+            <param name="putViewModel"></param>
+            <response code="200">The entity was changed.</response>
+            <response code="400">Failed to change entity. Error list in response body.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`2.PostAsync(`1)">
+            <summary>
+            Create entity.
+            </summary>
+            <param name="postViewModel"></param>
+            <response code="201">The entity was created.</response>
+            <response code="400">Failed to create entity. Error list in response body.</response>
+        </member>
+        <member name="M:Web.GuidelinesControllers.IFullRestApiController`2.DeleteAsync(`0)">
+            <summary>
+            Delete entity.
+            </summary>
+            <param name="id">Id of entity to delete.</param>
+            <response code="200">The entity was deleted.</response>
+            <response code="400">Failed to delete entity. Error list in response body.</response>
+            <response code="404">The entity with the received id was not found.</response>
+        </member>
+    </members>
+</doc>

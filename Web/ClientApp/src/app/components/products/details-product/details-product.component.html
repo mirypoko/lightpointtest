@@ -1,0 +1,19 @@
+<mat-card class="container card children-width100" *ngIf="product">
+  <mat-card-header>
+    <h3>{{product.name}}</h3>
+  </mat-card-header>
+  <img mat-card-image src="{{product.imgUrl}}" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      <b>Shop: </b>{{product.shop.name}}</p>
+    <p>
+      {{product.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Buy now</button>
+    <button mat-button [routerLink]="['/products']">To list</button>
+  </mat-card-actions>
+</mat-card>
+<br>
+<br>

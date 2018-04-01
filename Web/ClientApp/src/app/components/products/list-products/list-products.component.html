@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row" *ngIf="currentUserIsAdmin">
+    <button [routerLink]="['/add-product']" mat-raised-button color="primary">Add product</button>
+  </div>
+  <br>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <input matInput [(ngModel)]="filter" (keyup)="applyFilter()" placeholder="Filter">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <mat-select (change)="applyFilter()" [(value)]="shopFilterId" placeholder="Shop">
+            <mat-option *ngFor="let shop of shops" [value]="shop.id">
+              {{ shop.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="container">
+  <div>
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="imgUrl">
+          <mat-header-cell style="min-width:220px !important;" *matHeaderCellDef>Img</mat-header-cell>
+          <mat-cell *matCellDef="let row" style="min-width:220px !important;">
+            <img src="{{row.imgUrl}}" />
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="director">
+          <mat-header-cell *matHeaderCellDef>Director</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.director}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="shop">
+          <mat-header-cell *matHeaderCellDef>Shop</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.shop.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <a mat-raised-button color="primary" [routerLink]="['/dtails-product', row.id]">Details</a>
+            <br>
+            <br>
+            <button *ngIf="currentUserIsAdmin" mat-raised-button color="warn" (click)="delete(row.id)">Delete</button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event; onPageEvent();">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+<br>
+<br>

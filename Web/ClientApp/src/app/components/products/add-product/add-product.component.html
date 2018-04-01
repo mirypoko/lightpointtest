@@ -1,0 +1,66 @@
+<mat-card class="container card children-width100">
+  <div class="text-center text-secondary">
+    <h3>Add product
+      <i class="material-icons icon-position">add_circle</i>
+    </h3>
+  </div>
+
+  <hr/>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card-content class="children-width-100">
+
+      <div *ngIf="errors.length > 0" class="text-danger error-margin">
+        <ng-template ngFor let-error [ngForOf]="errors">
+          {{error}}
+          <br/>
+        </ng-template>
+        <br/>
+      </div>
+
+      <mat-form-field>
+        <input type="text" formControlName="name" matInput placeholder="Name">
+        <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+          Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" formControlName="imgUrl" matInput placeholder="Img url">
+        <mat-error *ngIf="form.controls['imgUrl'].invalid && form.controls['imgUrl'].touched">
+          Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea type="text" formControlName="description" matInput placeholder="Description"></textarea>
+        <mat-error *ngIf="form.controls['description'].invalid && form.controls['description'].touched">
+          Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select formControlName="shopId" placeholder="Shop">
+          <mat-option *ngFor="let shop of shops" [value]="shop.id">
+            {{ shop.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['shopId'].invalid && form.controls['shopId'].touched">
+          Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <div class="text-center">
+        <button mat-raised-button color="primary">Add
+          <mat-icon class="text-light">add_circle</mat-icon>
+        </button>
+        <br/>
+        <br/>
+        <p class="text-muted">To shops
+          <a [routerLink]="['/products']">list</a>
+        </p>
+      </div>
+
+    </mat-card-content>
+  </form>
+</mat-card>

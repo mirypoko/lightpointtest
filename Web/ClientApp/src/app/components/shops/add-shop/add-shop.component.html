@@ -1,0 +1,59 @@
+<mat-card class="container card children-width100">
+  <div class="text-center text-secondary">
+    <h3>Add shop
+      <i class="material-icons icon-position">add_circle</i>
+    </h3>
+  </div>
+
+  <hr/>
+  
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card-content class="children-width-100">
+
+      <div *ngIf="errors.length > 0" class="text-danger error-margin">
+        <ng-template ngFor let-error [ngForOf]="errors">
+          {{error}}
+          <br/>
+        </ng-template>
+        <br/>
+      </div>
+
+      <mat-form-field>
+        <input type="text" formControlName="name" matInput placeholder="Name">
+        <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+          Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" formControlName="address" matInput placeholder="Address">
+        <mat-error *ngIf="form.controls['address'].invalid && form.controls['address'].touched">
+          Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select formControlName="shopModeId"  placeholder="Shop mode">
+          <mat-option *ngFor="let shopMode of shopModes" [value]="shopMode.id">
+            {{ shopMode.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['shopModeId'].invalid && form.controls['shopModeId'].touched">
+          Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <div class="text-center">
+        <button mat-raised-button color="primary">Add
+          <mat-icon class="text-light">add_circle</mat-icon>
+        </button>
+        <br/>
+        <br/>
+        <p class="text-muted">To shops
+          <a [routerLink]="['/shops']">list</a>
+        </p>
+      </div>
+
+    </mat-card-content>
+  </form>
+</mat-card>
